@@ -86,7 +86,9 @@ class SoftDeleteBehaviorTest extends TestCase
         $user = $this->usersTable->get(2);
         $this->usersTable->delete($user);
 
-        $query = $this->usersTable->find()->where(['OR' => [['id' => 1], 'id' => 1]]);
+        $query = $this->usersTable->find()->where([
+            'OR' => [['id' => 1], ['id' => 2]]
+        ]);
         $this->assertEquals(1, $query->count());
     }
 
